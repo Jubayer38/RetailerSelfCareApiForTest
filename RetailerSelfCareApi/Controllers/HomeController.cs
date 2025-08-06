@@ -49,8 +49,10 @@ namespace RetailerSelfCareApi.Controllers
 
             try
             {
-                surveyService = new();
-                dt = await surveyService.GetSurveyValidity(id, rc);
+                using (surveyService = new())
+                {
+                    dt = await surveyService.GetSurveyValidity(id, rc);
+                }
             }
             catch (Exception ex)
             {
